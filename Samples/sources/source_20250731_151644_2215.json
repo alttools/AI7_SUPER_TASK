@@ -1,0 +1,10 @@
+{
+  "type": "source",
+  "name": "argv",
+  "line_number": 3202,
+  "match": "argv[",
+  "confidence": 0.9,
+  "description": "Command line arguments",
+  "filename": "/Users/louismurphy/Library/Mobile Documents/com~apple~CloudDocs/Desktop/ODYSSEY/AI7_SUPER_TASK/../AI_SUPER_TASK/Repos/sqlite/src/test1.c",
+  "line_content": "rc = sqlite3_bind_text(pStmt, idx, argv[3], -1, SQLITE_TRANSIENT);"
+}

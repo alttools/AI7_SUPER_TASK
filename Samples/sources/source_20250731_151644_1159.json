@@ -1,0 +1,10 @@
+{
+  "type": "source",
+  "name": "localstorage",
+  "line_number": 41,
+  "match": "localStorage.getItem",
+  "confidence": 0.7,
+  "description": "Data from localStorage",
+  "filename": "/Users/louismurphy/Library/Mobile Documents/com~apple~CloudDocs/Desktop/ODYSSEY/AI7_SUPER_TASK/../AI_SUPER_TASK/Repos/sqlite/ext/wasm/tests/opfs/concurrency/test.js",
+  "line_content": "cbReverse.checked = !!(+localStorage.getItem(cbReverseKey));"
+}

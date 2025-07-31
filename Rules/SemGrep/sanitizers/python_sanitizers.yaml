@@ -1,0 +1,156 @@
+rules:
+- id: sql-parameterization
+  languages: [python]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - pattern: $CURSOR.execute($QUERY, $PARAMS)
+        - pattern: $CONN.execute($QUERY, $PARAMS)
+        - pattern: $CURSOR.executemany($QUERY, $PARAMS)
+        - pattern: $CONN.executemany($QUERY, $PARAMS)
+      - metavariable-comparison:
+          metavariable: $PARAMS
+          comparison: $PARAMS != None
+  metadata:
+    category: sanitizer
+    type: parameterization
+    mitigates: [CWE-89]
+
+- id: html-escape-sanitizer
+  languages: [python]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - pattern: html.escape(...)
+        - pattern: markupsafe.escape(...)
+        - pattern: cgi.escape(...)
+        - pattern: django.utils.html.escape(...)
+        - pattern: flask.escape(...)
+        - pattern: jinja2.escape(...)
+  metadata:
+    category: sanitizer
+    type: html-encoding
+    mitigates: [CWE-79]
+
+- id: shell-quote-sanitizer
+  languages: [python]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - pattern: shlex.quote(...)
+        - pattern: pipes.quote(...)
+        - pattern: subprocess.list2cmdline(...)
+  metadata:
+    category: sanitizer
+    type: shell-escaping
+    mitigates: [CWE-78]
+
+- id: path-validation-sanitizer
+  languages: [python]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - pattern: os.path.abspath(...)
+        - pattern: os.path.realpath(...)
+        - pattern: pathlib.Path(...).resolve()
+        - patterns:
+          - pattern: os.path.join($BASE, ...)
+          - metavariable-regex:
+              metavariable: $BASE
+              regex: .*(safe|allowed|base|root).*
+  metadata:
+    category: sanitizer
+    type: path-validation
+    mitigates: [CWE-22]
+
+- id: url-encoding-sanitizer
+  languages: [python]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - pattern: urllib.parse.quote(...)
+        - pattern: urllib.quote(...)
+        - pattern: urllib.parse.quote_plus(...)
+        - pattern: urllib.quote_plus(...)
+  metadata:
+    category: sanitizer
+    type: url-encoding
+    mitigates: [CWE-918]
+
+- id: regex-escape-sanitizer
+  languages: [python]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - pattern: re.escape(...)
+  metadata:
+    category: sanitizer
+    type: regex-escaping
+    mitigates: [CWE-1333]
+
+- id: xml-safe-parser-sanitizer
+  languages: [python]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - pattern: defusedxml.ElementTree.fromstring(...)
+        - pattern: defusedxml.minidom.parseString(...)
+        - pattern: defusedxml.sax.parse(...)
+        - patterns:
+          - pattern: $PARSER.setFeature(...)
+          - metavariable-regex:
+              metavariable: $PARSER
+              regex: .*XMLParser.*
+  metadata:
+    category: sanitizer
+    type: xml-safe-parsing
+    mitigates: [CWE-611]
+
+- id: json-safe-load-sanitizer
+  languages: [python]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - pattern: json.loads(...)
+        - pattern: json.load(...)
+        - pattern: yaml.safe_load(...)
+        - pattern: yaml.safe_load_all(...)
+  metadata:
+    category: sanitizer
+    type: safe-deserialization
+    mitigates: [CWE-502]
+
+- id: input-validation-sanitizer
+  languages: [python]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - patterns:
+          - pattern: $VALIDATOR.validate(...)
+          - metavariable-regex:
+              metavariable: $VALIDATOR
+              regex: .*(validator|schema|form).*
+        - pattern: isinstance(..., ...)
+        - pattern: type(...) == ...
+        - patterns:
+          - pattern: re.match($PATTERN, ...)
+          - metavariable-regex:
+              metavariable: $PATTERN
+              regex: ^r?["\'].*["\']$
+  metadata:
+    category: sanitizer
+    type: input-validation
+    mitigates: [CWE-20]
+
+- id: ldap-escape-sanitizer
+  languages: [python]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - pattern: ldap3.utils.dn.escape_rdn(...)
+        - pattern: ldap3.utils.conv.escape_filter_chars(...)
+        - pattern: ldap.filter.escape_filter_chars(...)
+  metadata:
+    category: sanitizer
+    type: ldap-escaping
+    mitigates: [CWE-90]

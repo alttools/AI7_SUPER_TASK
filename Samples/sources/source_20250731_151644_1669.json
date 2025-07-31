@@ -1,0 +1,10 @@
+{
+  "type": "source",
+  "name": "argv",
+  "line_number": 2164,
+  "match": "argv[",
+  "confidence": 0.9,
+  "description": "Command line arguments",
+  "filename": "/Users/louismurphy/Library/Mobile Documents/com~apple~CloudDocs/Desktop/ODYSSEY/AI7_SUPER_TASK/../AI_SUPER_TASK/Repos/sqlite/tool/sqlite3_rsync.c",
+  "line_content": "append_escaped_arg(pStr, argv[k], i!=k);"
+}

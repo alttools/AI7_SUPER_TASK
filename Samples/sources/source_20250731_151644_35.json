@@ -1,0 +1,10 @@
+{
+  "type": "source",
+  "name": "argv",
+  "line_number": 3385,
+  "match": "argv[",
+  "confidence": 0.9,
+  "description": "Command line arguments",
+  "filename": "/Users/louismurphy/Library/Mobile Documents/com~apple~CloudDocs/Desktop/ODYSSEY/AI7_SUPER_TASK/../AI_SUPER_TASK/Repos/sqlite/autosetup/jimsh0.c",
+  "line_content": "return JimMakeChannel(interp, fd, argv[1], \"aio.handle%ld\", 0, flags) ? JIM_OK : JIM_ERR;"
+}

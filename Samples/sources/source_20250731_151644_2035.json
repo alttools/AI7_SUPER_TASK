@@ -1,0 +1,10 @@
+{
+  "type": "source",
+  "name": "stdin_input",
+  "line_number": 1730,
+  "match": "gets",
+  "confidence": 0.8,
+  "description": "Standard input functions",
+  "filename": "/Users/louismurphy/Library/Mobile Documents/com~apple~CloudDocs/Desktop/ODYSSEY/AI7_SUPER_TASK/../AI_SUPER_TASK/Repos/sqlite/src/vdbeaux.c",
+  "line_content": "** The Synopsis: field in comments in the vdbe.c source file gets converted"
+}

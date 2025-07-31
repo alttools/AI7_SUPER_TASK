@@ -1,0 +1,130 @@
+rules:
+- id: numeric-cast-sanitizer
+  languages: [python, javascript, java, csharp, go, typescript]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - pattern: int(...)
+        - pattern: float(...)
+        - pattern: Number(...)
+        - pattern: parseInt(...)
+        - pattern: parseFloat(...)
+        - pattern: Integer.parseInt(...)
+        - pattern: Double.parseDouble(...)
+        - pattern: strconv.Atoi(...)
+  metadata:
+    category: sanitizer
+    type: type-casting
+    mitigates: [CWE-89, CWE-79]
+
+- id: whitelist-validation-sanitizer
+  languages: [generic]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - patterns:
+          - pattern: if $VAR in $WHITELIST
+          - metavariable-regex:
+              metavariable: $WHITELIST
+              regex: .*(allowed|valid|safe|whitelist).*
+        - patterns:
+          - pattern: $WHITELIST.contains($VAR)
+          - metavariable-regex:
+              metavariable: $WHITELIST
+              regex: .*(allowed|valid|safe|whitelist).*
+  metadata:
+    category: sanitizer
+    type: whitelist-validation
+    mitigates: [CWE-20]
+
+- id: length-check-sanitizer
+  languages: [generic]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - pattern: if len($VAR) < $LIMIT
+        - pattern: if $VAR.length < $LIMIT
+        - pattern: if strlen($VAR) < $LIMIT
+        - pattern: if $VAR.Length < $LIMIT
+  metadata:
+    category: sanitizer
+    type: length-validation
+    mitigates: [CWE-120, CWE-1333]
+
+- id: null-check-sanitizer
+  languages: [generic]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - pattern: if $VAR is None
+        - pattern: if $VAR == None
+        - pattern: if $VAR === null
+        - pattern: if $VAR == null
+        - pattern: if $VAR === undefined
+        - pattern: if !$VAR
+  metadata:
+    category: sanitizer
+    type: null-validation
+    mitigates: [CWE-476]
+
+- id: encoding-sanitizer
+  languages: [python, javascript, java, csharp, go, typescript]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - pattern: $VAR.encode(...)
+        - pattern: encodeURIComponent(...)
+        - pattern: encodeURI(...)
+        - pattern: URLEncoder.encode(...)
+        - pattern: HttpUtility.UrlEncode(...)
+        - pattern: url.QueryEscape(...)
+  metadata:
+    category: sanitizer
+    type: encoding
+    mitigates: [CWE-79, CWE-116]
+
+- id: prepared-statement-sanitizer
+  languages: [javascript, java, csharp, go, typescript]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - pattern: $DB.prepare(...)
+        - pattern: $CONN.prepareStatement(...)
+        - pattern: new SqlCommand($QUERY, $CONN)
+        - pattern: $DB.Query($QUERY, $PARAMS)
+  metadata:
+    category: sanitizer
+    type: prepared-statement
+    mitigates: [CWE-89]
+
+- id: crypto-hash-sanitizer
+  languages: [generic]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - pattern: hashlib.sha256(...)
+        - pattern: crypto.createHash(...)
+        - pattern: MessageDigest.getInstance(...)
+        - pattern: SHA256.Create()
+  metadata:
+    category: sanitizer
+    type: cryptographic-hash
+    mitigates: [CWE-328]
+
+- id: rate-limit-sanitizer
+  languages: [generic]
+  pattern-sanitizers:
+    - patterns:
+      - pattern-either:
+        - pattern: $LIMITER.check(...)
+        - pattern: $LIMITER.limit(...)
+        - pattern: $LIMITER.allow(...)
+        - patterns:
+          - pattern: $DECORATOR(...)
+          - metavariable-regex:
+              metavariable: $DECORATOR
+              regex: .*(rate_limit|throttle|limit).*
+  metadata:
+    category: sanitizer
+    type: rate-limiting
+    mitigates: [CWE-770, CWE-400]

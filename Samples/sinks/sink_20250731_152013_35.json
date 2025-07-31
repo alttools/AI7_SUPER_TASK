@@ -1,0 +1,10 @@
+{
+  "type": "sink",
+  "name": "strcpy",
+  "line_number": 967,
+  "match": "strcpy(",
+  "confidence": 0.85,
+  "description": "Unsafe string copy",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/src/test_vfs.c",
+  "line_content": "strcpy(&zLock[nLock], \" shared\");"
+}

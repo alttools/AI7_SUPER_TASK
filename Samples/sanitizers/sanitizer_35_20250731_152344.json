@@ -1,0 +1,10 @@
+{
+  "type": "sanitizer",
+  "name": "strncpy",
+  "line_number": 486,
+  "match": "strncpy(",
+  "confidence": 0.8,
+  "description": "Bounded string copy",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/src/test2.c",
+  "line_content": "strncpy(pData, argv[2], test_pagesize-1);"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "source",
+  "name": "stdin_input",
+  "line_number": 232,
+  "match": "gets",
+  "confidence": 0.8,
+  "description": "Standard input functions",
+  "filename": "/Users/louismurphy/Library/Mobile Documents/com~apple~CloudDocs/Desktop/ODYSSEY/AI7_SUPER_TASK/../AI_SUPER_TASK/Repos/sqlite/src/os_kv.c",
+  "line_content": "** terminated, even if it gets truncated because nBuf is not large enough."
+}

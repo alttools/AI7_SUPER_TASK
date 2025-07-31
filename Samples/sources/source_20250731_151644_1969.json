@@ -1,0 +1,10 @@
+{
+  "type": "source",
+  "name": "argv",
+  "line_number": 2471,
+  "match": "argv[",
+  "confidence": 0.9,
+  "description": "Command line arguments",
+  "filename": "/Users/louismurphy/Library/Mobile Documents/com~apple~CloudDocs/Desktop/ODYSSEY/AI7_SUPER_TASK/../AI_SUPER_TASK/Repos/sqlite/src/func.c",
+  "line_content": "sqlite3_result_double(context, x(sqlite3_value_double(argv[0])));"
+}

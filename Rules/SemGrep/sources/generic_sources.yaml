@@ -1,0 +1,87 @@
+rules:
+- id: user-input-argv-python
+  languages: [python]
+  pattern-either:
+    - pattern: sys.argv
+    - pattern: sys.argv[...]
+  message: Command-line arguments as taint source
+  severity: INFO
+  metadata:
+    category: source
+    subcategory: cli-input
+    confidence: high
+
+- id: user-input-args-generic
+  languages: [python, javascript, java]
+  patterns:
+    - pattern: $ARGS[...]
+    - metavariable-regex:
+        metavariable: $ARGS
+        regex: ^(args|argv|arguments)$
+  message: Arguments array as taint source  
+  severity: INFO
+  metadata:
+    category: source
+    subcategory: cli-input
+    confidence: high
+
+- id: env-variable-source-python
+  languages: [python]
+  pattern-either:
+    - pattern: os.environ[...]
+    - pattern: os.environ.get(...)
+    - pattern: os.getenv(...)
+  message: Environment variable as taint source
+  severity: INFO
+  metadata:
+    category: source
+    subcategory: env-input
+    confidence: high
+
+- id: env-variable-source-js
+  languages: [javascript, typescript]
+  pattern-either:
+    - pattern: process.env[...]
+    - pattern: process.env.$KEY
+  message: Environment variable as taint source
+  severity: INFO
+  metadata:
+    category: source
+    subcategory: env-input
+    confidence: high
+
+- id: file-read-source-python
+  languages: [python]
+  pattern-either:
+    - pattern: open(...).read()
+    - pattern: open(...).readlines()
+    - patterns:
+      - pattern: $FILE.read()
+      - metavariable-regex:
+          metavariable: $FILE
+          regex: ^(file|f|fp|fd)$
+    - patterns:
+      - pattern: $FILE.readlines()
+      - metavariable-regex:
+          metavariable: $FILE
+          regex: ^(file|f|fp|fd)$
+  message: File contents as taint source
+  severity: INFO
+  metadata:
+    category: source
+    subcategory: file-input
+    confidence: medium
+
+- id: stdin-source-python
+  languages: [python]
+  pattern-either:
+    - pattern: sys.stdin.read()
+    - pattern: sys.stdin.readline()
+    - pattern: input(...)
+    - pattern: raw_input(...)
+  message: Standard input as taint source
+  severity: INFO
+  metadata:
+    category: source
+    subcategory: stdin-input
+    confidence: high

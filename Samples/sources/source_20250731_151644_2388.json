@@ -1,0 +1,10 @@
+{
+  "type": "source",
+  "name": "stdin_input",
+  "line_number": 162,
+  "match": "gets",
+  "confidence": 0.8,
+  "description": "Standard input functions",
+  "filename": "/Users/louismurphy/Library/Mobile Documents/com~apple~CloudDocs/Desktop/ODYSSEY/AI7_SUPER_TASK/../AI_SUPER_TASK/Repos/sqlite/src/pcache.c",
+  "line_content": "**    (1)  Page X is journalled, and gets WRITEABLE and NEED_SEEK."
+}

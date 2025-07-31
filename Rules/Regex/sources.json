@@ -1,0 +1,106 @@
+{
+  "sources": {
+    "javascript": [
+      {
+        "name": "user_input",
+        "pattern": "\\b(request\\.(body|query|params|headers)|req\\.(body|query|params|headers))\\b",
+        "description": "User input from HTTP requests",
+        "confidence": 0.9
+      },
+      {
+        "name": "url_params",
+        "pattern": "\\bnew URLSearchParams\\b",
+        "description": "URL parameters",
+        "confidence": 0.8
+      },
+      {
+        "name": "localstorage",
+        "pattern": "\\blocalStorage\\.getItem\\b",
+        "description": "Data from localStorage",
+        "confidence": 0.7
+      },
+      {
+        "name": "cookie_data",
+        "pattern": "\\bdocument\\.cookie\\b",
+        "description": "Cookie data",
+        "confidence": 0.8
+      }
+    ],
+    "python": [
+      {
+        "name": "user_input",
+        "pattern": "\\b(request\\.(args|form|values|headers|files|json))\\b",
+        "description": "User input from HTTP requests",
+        "confidence": 0.9
+      },
+      {
+        "name": "stdin_input",
+        "pattern": "\\b(input\\(|sys\\.stdin)\\b",
+        "description": "Standard input",
+        "confidence": 0.8
+      },
+      {
+        "name": "file_input",
+        "pattern": "\\bopen\\([^,]+,\\s*['\"]r['\"]\\)",
+        "description": "File input operations",
+        "confidence": 0.6
+      }
+    ],
+    "java": [
+      {
+        "name": "servlet_input",
+        "pattern": "\\b(request\\.getParameter|request\\.getHeader|request\\.getCookies)\\b",
+        "description": "Servlet request input",
+        "confidence": 0.9
+      },
+      {
+        "name": "scanner_input",
+        "pattern": "\\bnew Scanner\\(System\\.in\\)\\b",
+        "description": "Console input",
+        "confidence": 0.8
+      }
+    ],
+    "typescript": [
+      {
+        "name": "user_input",
+        "pattern": "\\b(request\\.(body|query|params|headers)|req\\.(body|query|params|headers))\\b",
+        "description": "User input from HTTP requests",
+        "confidence": 0.9
+      },
+      {
+        "name": "url_params",
+        "pattern": "\\bnew URLSearchParams\\b",
+        "description": "URL parameters",
+        "confidence": 0.8
+      }
+    ],
+    "php": [
+      {
+        "name": "superglobals",
+        "pattern": "\\$_(GET|POST|REQUEST|COOKIE|FILES|SERVER|ENV)\\b",
+        "description": "PHP superglobals",
+        "confidence": 0.9
+      },
+      {
+        "name": "stdin",
+        "pattern": "\\bfile_get_contents\\(['\"]php://input['\"]\\)",
+        "description": "Raw POST data",
+        "confidence": 0.8
+      }
+    ],
+    "cpp": [
+      {
+        "name": "stdin_input",
+        "pattern": "\\b(cin|scanf|gets|fgets)\\b",
+        "description": "Standard input functions",
+        "confidence": 0.8
+      },
+      {
+        "name": "argv",
+        "pattern": "\\bargv\\[",
+        "description": "Command line arguments",
+        "confidence": 0.9
+      }
+    ]
+  }
+}

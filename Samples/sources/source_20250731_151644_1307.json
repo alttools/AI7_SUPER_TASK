@@ -1,0 +1,10 @@
+{
+  "type": "source",
+  "name": "argv",
+  "line_number": 1525,
+  "match": "argv[",
+  "confidence": 0.9,
+  "description": "Command line arguments",
+  "filename": "/Users/louismurphy/Library/Mobile Documents/com~apple~CloudDocs/Desktop/ODYSSEY/AI7_SUPER_TASK/../AI_SUPER_TASK/Repos/sqlite/ext/lsm1/lsm-test/lsmtest_main.c",
+  "line_content": "rc = aTest[iFunc].xFunc(argc-2, &argv[2]);"
+}

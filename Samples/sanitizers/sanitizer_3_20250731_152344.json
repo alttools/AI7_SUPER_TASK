@@ -1,0 +1,10 @@
+{
+  "type": "sanitizer",
+  "name": "snprintf",
+  "line_number": 20112,
+  "match": "snprintf(",
+  "confidence": 0.85,
+  "description": "Bounded string formatting",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/autosetup/jimsh0.c",
+  "line_content": "snprintf(buffer, sizeof(buffer), \"%d entries in table, %d buckets\", dict->len, dict->size);"
+}

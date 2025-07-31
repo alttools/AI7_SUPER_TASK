@@ -1,0 +1,41 @@
+Analyze the following JavaScript code for dangerous sinks.
+
+Critical sinks to identify:
+1. eval(), Function(), setTimeout/setInterval with strings
+2. innerHTML, outerHTML, document.write()
+3. SQL query construction (string concatenation)
+4. child_process.exec(), execSync()
+5. fs.writeFile(), fs.unlink() with user paths
+6. Dynamic require() with user input
+7. res.send() without encoding
+8. crypto operations with weak algorithms
+{{#if isReact}}
+9. dangerouslySetInnerHTML
+10. Dynamic component rendering with user data
+{{/if}}
+
+Include CWE identifiers where applicable.
+
+For each sink found, provide:
+{
+  "findings": [
+    {
+      "type": "sink",
+      "category": "<category>",
+      "line": <number>,
+      "column": <number>,
+      "endLine": <number>,
+      "endColumn": <number>,
+      "severity": "low|medium|high|critical",
+      "confidence": <0.0-1.0>,
+      "message": "<description>",
+      "cwe": "CWE-XXX"
+    }
+  ]
+}
+
+File: {{filePath}}
+Code:
+\`\`\`javascript
+{{content}}
+\`\`\`

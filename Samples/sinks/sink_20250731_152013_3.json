@@ -1,0 +1,10 @@
+{
+  "type": "sink",
+  "name": "strcpy",
+  "line_number": 23943,
+  "match": "strcpy(",
+  "confidence": 0.85,
+  "description": "Unsafe string copy",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/autosetup/jimsh0.c",
+  "line_content": "strcat(strcpy(dir->name, name), all);"
+}

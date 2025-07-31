@@ -1,0 +1,118 @@
+{
+  "sanitizers": {
+    "javascript": [
+      {
+        "name": "escape_html",
+        "pattern": "\\b(escapeHtml|htmlEscape|DOMPurify\\.sanitize)\\s*\\(",
+        "description": "HTML escaping functions",
+        "confidence": 0.9
+      },
+      {
+        "name": "encode_uri",
+        "pattern": "\\b(encodeURI|encodeURIComponent)\\s*\\(",
+        "description": "URI encoding functions",
+        "confidence": 0.85
+      },
+      {
+        "name": "regex_escape",
+        "pattern": "\\.replace\\s*\\(.*[\\\\\\[\\]{}()*+?.\\\\^$|]",
+        "description": "Regex escaping",
+        "confidence": 0.7
+      }
+    ],
+    "python": [
+      {
+        "name": "html_escape",
+        "pattern": "\\b(html\\.escape|escape|markupsafe\\.escape)\\s*\\(",
+        "description": "HTML escaping functions",
+        "confidence": 0.9
+      },
+      {
+        "name": "shlex_quote",
+        "pattern": "\\bshlex\\.quote\\s*\\(",
+        "description": "Shell command escaping",
+        "confidence": 0.95
+      },
+      {
+        "name": "parameterized_query",
+        "pattern": "\\b(execute|executemany)\\s*\\([^,]+,\\s*[\\[\\(]",
+        "description": "Parameterized SQL queries",
+        "confidence": 0.85
+      }
+    ],
+    "java": [
+      {
+        "name": "prepared_statement",
+        "pattern": "\\bPreparedStatement\\b",
+        "description": "Prepared SQL statements",
+        "confidence": 0.9
+      },
+      {
+        "name": "string_escapeutils",
+        "pattern": "\\bStringEscapeUtils\\.(escapeHtml|escapeXml|escapeJava)\\s*\\(",
+        "description": "Apache Commons escaping",
+        "confidence": 0.95
+      },
+      {
+        "name": "encoder",
+        "pattern": "\\bEncoder\\.(encodeForHTML|encodeForJavaScript|encodeForURL)\\s*\\(",
+        "description": "OWASP encoder",
+        "confidence": 0.95
+      }
+    ],
+    "typescript": [
+      {
+        "name": "escape_html",
+        "pattern": "\\b(escapeHtml|htmlEscape|DOMPurify\\.sanitize)\\s*\\(",
+        "description": "HTML escaping functions",
+        "confidence": 0.9
+      },
+      {
+        "name": "encode_uri",
+        "pattern": "\\b(encodeURI|encodeURIComponent)\\s*\\(",
+        "description": "URI encoding functions",
+        "confidence": 0.85
+      }
+    ],
+    "php": [
+      {
+        "name": "htmlspecialchars",
+        "pattern": "\\bhtmlspecialchars\\s*\\(",
+        "description": "HTML special characters escaping",
+        "confidence": 0.9
+      },
+      {
+        "name": "prepared_statement",
+        "pattern": "\\b(prepare|bindParam|bindValue)\\s*\\(",
+        "description": "Prepared SQL statements",
+        "confidence": 0.9
+      },
+      {
+        "name": "escapeshellarg",
+        "pattern": "\\b(escapeshellarg|escapeshellcmd)\\s*\\(",
+        "description": "Shell command escaping",
+        "confidence": 0.95
+      }
+    ],
+    "cpp": [
+      {
+        "name": "strncpy",
+        "pattern": "\\bstrncpy\\s*\\(",
+        "description": "Bounded string copy",
+        "confidence": 0.8
+      },
+      {
+        "name": "snprintf",
+        "pattern": "\\bsnprintf\\s*\\(",
+        "description": "Bounded string formatting",
+        "confidence": 0.85
+      },
+      {
+        "name": "std_string",
+        "pattern": "\\bstd::string\\b",
+        "description": "Safe string class",
+        "confidence": 0.9
+      }
+    ]
+  }
+}

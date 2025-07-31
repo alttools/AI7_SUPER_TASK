@@ -1,0 +1,10 @@
+{
+  "type": "sink",
+  "name": "exec_family",
+  "line_number": 6060,
+  "match": "execvp(",
+  "confidence": 0.9,
+  "description": "Exec family functions",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/autosetup/jimsh0.c",
+  "line_content": "execvp(false_argv[0],false_argv);"
+}

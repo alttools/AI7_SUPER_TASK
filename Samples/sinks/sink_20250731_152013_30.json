@@ -1,0 +1,10 @@
+{
+  "type": "sink",
+  "name": "exec_family",
+  "line_number": 309,
+  "match": "execl(",
+  "confidence": 0.9,
+  "description": "Exec family functions",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/tool/sqlite3_rsync.c",
+  "line_content": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", zCmd, (char*)0);"
+}

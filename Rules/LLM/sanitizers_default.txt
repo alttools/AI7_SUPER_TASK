@@ -1,0 +1,38 @@
+Analyze the following {{uppercase language}} code and identify security sanitization functions and validation mechanisms.
+
+Focus on finding:
+1. HTML/XSS escaping functions
+2. SQL injection prevention (prepared statements, parameterized queries)
+3. Input validation functions
+4. Path traversal prevention
+5. Command injection prevention
+6. CSRF protection mechanisms
+7. Encoding functions
+8. Authentication/authorization checks
+9. Rate limiting implementations
+10. Security headers being set
+
+For each sanitizer found, provide:
+{
+  "findings": [
+    {
+      "type": "sanitizer",
+      "category": "<category>",
+      "line": <number>,
+      "column": <number>,
+      "endLine": <number>,
+      "endColumn": <number>,
+      "severity": "info",
+      "confidence": <0.0-1.0>,
+      "message": "<description>",
+      "sanitizerType": "<type>",
+      "protectsAgainst": ["<vulnerability_type>"]
+    }
+  ]
+}
+
+File: {{filePath}}
+Code:
+\`\`\`{{language}}
+{{content}}
+\`\`\`

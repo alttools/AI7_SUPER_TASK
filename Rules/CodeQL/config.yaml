@@ -1,0 +1,120 @@
+codeql:
+  database_timeout: 300 # seconds
+  query_timeout: 60 # seconds
+  cache_results: true
+  cache_ttl: 3600 # seconds
+  
+  languages:
+    javascript:
+      enabled: true
+      database_creation: "codeql database create --language=javascript"
+      sources:
+        - id: "js-user-input"
+          name: "User Input Sources"
+          query: "javascript/sources/user-input.ql"
+          severity: "medium"
+          description: "Detects user-controlled input from HTTP requests, URL parameters, and form data"
+        - id: "js-file-read"
+          name: "File System Read"
+          query: "javascript/sources/file-read.ql"
+          severity: "low"
+          description: "Detects file system read operations that could expose sensitive data"
+        - id: "js-env-vars"
+          name: "Environment Variables"
+          query: "javascript/sources/env-vars.ql"
+          severity: "low"
+          description: "Detects access to environment variables"
+      sinks:
+        - id: "js-command-injection"
+          name: "Command Injection Sink"
+          query: "javascript/sinks/command-injection.ql"
+          severity: "critical"
+          cwe: ["CWE-78"]
+          description: "Detects command execution sinks that could lead to OS command injection"
+        - id: "js-sql-injection"
+          name: "SQL Injection Sink"
+          query: "javascript/sinks/sql-injection.ql"
+          severity: "high"
+          cwe: ["CWE-89"]
+          description: "Detects SQL query execution sinks"
+        - id: "js-xss"
+          name: "Cross-Site Scripting Sink"
+          query: "javascript/sinks/xss.ql"
+          severity: "high"
+          cwe: ["CWE-79"]
+          description: "Detects HTML/DOM manipulation sinks that could lead to XSS"
+      sanitizers:
+        - id: "js-input-validation"
+          name: "Input Validation"
+          query: "javascript/sanitizers/input-validation.ql"
+          description: "Detects input validation and sanitization functions"
+        - id: "js-escape-html"
+          name: "HTML Escaping"
+          query: "javascript/sanitizers/escape-html.ql"
+          description: "Detects HTML escaping functions"
+          
+    python:
+      enabled: true
+      database_creation: "codeql database create --language=python"
+      sources:
+        - id: "py-user-input"
+          name: "User Input Sources"
+          query: "python/sources/user-input.ql"
+          severity: "medium"
+          description: "Detects user-controlled input from Flask, Django, and other frameworks"
+        - id: "py-file-read"
+          name: "File System Read"
+          query: "python/sources/file-read.ql"
+          severity: "low"
+          description: "Detects file system read operations"
+      sinks:
+        - id: "py-command-injection"
+          name: "Command Injection Sink"
+          query: "python/sinks/command-injection.ql"
+          severity: "critical"
+          cwe: ["CWE-78"]
+          description: "Detects os.system, subprocess, and similar command execution"
+        - id: "py-sql-injection"
+          name: "SQL Injection Sink"
+          query: "python/sinks/sql-injection.ql"
+          severity: "high"
+          cwe: ["CWE-89"]
+          description: "Detects SQL query execution"
+      sanitizers:
+        - id: "py-input-validation"
+          name: "Input Validation"
+          query: "python/sanitizers/input-validation.ql"
+          description: "Detects input validation functions"
+          
+    java:
+      enabled: true
+      database_creation: "codeql database create --language=java"
+      sources:
+        - id: "java-user-input"
+          name: "User Input Sources"
+          query: "java/sources/user-input.ql"
+          severity: "medium"
+          description: "Detects user-controlled input from servlets and Spring"
+        - id: "java-file-read"
+          name: "File System Read"
+          query: "java/sources/file-read.ql"
+          severity: "low"
+          description: "Detects file system read operations"
+      sinks:
+        - id: "java-command-injection"
+          name: "Command Injection Sink"
+          query: "java/sinks/command-injection.ql"
+          severity: "critical"
+          cwe: ["CWE-78"]
+          description: "Detects Runtime.exec and ProcessBuilder usage"
+        - id: "java-sql-injection"
+          name: "SQL Injection Sink"
+          query: "java/sinks/sql-injection.ql"
+          severity: "high"
+          cwe: ["CWE-89"]
+          description: "Detects JDBC query execution"
+      sanitizers:
+        - id: "java-input-validation"
+          name: "Input Validation"
+          query: "java/sanitizers/input-validation.ql"
+          description: "Detects input validation and sanitization"

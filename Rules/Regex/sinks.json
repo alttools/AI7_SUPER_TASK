@@ -1,0 +1,130 @@
+{
+  "sinks": {
+    "javascript": [
+      {
+        "name": "eval",
+        "pattern": "\\beval\\s*\\(",
+        "description": "JavaScript eval function",
+        "confidence": 0.95
+      },
+      {
+        "name": "function_constructor",
+        "pattern": "\\bnew\\s+Function\\s*\\(",
+        "description": "Function constructor",
+        "confidence": 0.9
+      },
+      {
+        "name": "innerHTML",
+        "pattern": "\\.innerHTML\\s*=",
+        "description": "DOM innerHTML injection",
+        "confidence": 0.85
+      },
+      {
+        "name": "setTimeout_string",
+        "pattern": "\\bsetTimeout\\s*\\([^,]+,",
+        "description": "setTimeout with string argument",
+        "confidence": 0.8
+      }
+    ],
+    "python": [
+      {
+        "name": "eval",
+        "pattern": "\\beval\\s*\\(",
+        "description": "Python eval function",
+        "confidence": 0.95
+      },
+      {
+        "name": "exec",
+        "pattern": "\\bexec\\s*\\(",
+        "description": "Python exec function",
+        "confidence": 0.95
+      },
+      {
+        "name": "os_system",
+        "pattern": "\\bos\\.system\\s*\\(",
+        "description": "OS command execution",
+        "confidence": 0.9
+      },
+      {
+        "name": "subprocess",
+        "pattern": "\\bsubprocess\\.(run|call|Popen)\\s*\\(",
+        "description": "Subprocess execution",
+        "confidence": 0.85
+      }
+    ],
+    "java": [
+      {
+        "name": "runtime_exec",
+        "pattern": "\\bRuntime\\.getRuntime\\(\\)\\.exec\\s*\\(",
+        "description": "Runtime command execution",
+        "confidence": 0.95
+      },
+      {
+        "name": "processbuilder",
+        "pattern": "\\bnew\\s+ProcessBuilder\\s*\\(",
+        "description": "ProcessBuilder command execution",
+        "confidence": 0.9
+      },
+      {
+        "name": "scriptengine",
+        "pattern": "\\bScriptEngine.*\\.eval\\s*\\(",
+        "description": "Script engine evaluation",
+        "confidence": 0.85
+      }
+    ],
+    "typescript": [
+      {
+        "name": "eval",
+        "pattern": "\\beval\\s*\\(",
+        "description": "JavaScript eval function",
+        "confidence": 0.95
+      },
+      {
+        "name": "function_constructor",
+        "pattern": "\\bnew\\s+Function\\s*\\(",
+        "description": "Function constructor",
+        "confidence": 0.9
+      }
+    ],
+    "php": [
+      {
+        "name": "eval",
+        "pattern": "\\beval\\s*\\(",
+        "description": "PHP eval function",
+        "confidence": 0.95
+      },
+      {
+        "name": "system",
+        "pattern": "\\b(system|exec|shell_exec|passthru)\\s*\\(",
+        "description": "System command execution",
+        "confidence": 0.9
+      },
+      {
+        "name": "include_dynamic",
+        "pattern": "\\b(include|require)(_once)?\\s*\\([^'\"]",
+        "description": "Dynamic file inclusion",
+        "confidence": 0.8
+      }
+    ],
+    "cpp": [
+      {
+        "name": "system",
+        "pattern": "\\bsystem\\s*\\(",
+        "description": "System command execution",
+        "confidence": 0.95
+      },
+      {
+        "name": "exec_family",
+        "pattern": "\\b(execl|execle|execlp|execv|execve|execvp)\\s*\\(",
+        "description": "Exec family functions",
+        "confidence": 0.9
+      },
+      {
+        "name": "strcpy",
+        "pattern": "\\bstrcpy\\s*\\(",
+        "description": "Unsafe string copy",
+        "confidence": 0.85
+      }
+    ]
+  }
+}

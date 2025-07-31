@@ -1,0 +1,157 @@
+rules:
+- id: sql-injection-sink
+  languages: [python]
+  patterns:
+    - pattern-either:
+      - patterns:
+        - pattern: $CURSOR.execute($QUERY, ...)
+        - pattern-not: $CURSOR.execute($QUERY, $PARAMS)
+        - pattern-not: $CURSOR.execute("...", ...)
+      - patterns:
+        - pattern: $CONN.execute($QUERY, ...)
+        - pattern-not: $CONN.execute($QUERY, $PARAMS)
+        - pattern-not: $CONN.execute("...", ...)
+      - pattern: sqlalchemy.text(...)
+      - pattern: text(...)
+      - patterns:
+        - pattern: $CONN.execute(text(...))
+        - pattern-not: $CONN.execute(text("..."))
+  message: SQL injection vulnerability
+  severity: ERROR
+  metadata:
+    category: sink
+    cwe: CWE-89
+    owasp: A03:2021
+    confidence: high
+
+- id: command-injection-sink
+  languages: [python]
+  pattern-either:
+    - pattern: os.system(...)
+    - pattern: os.popen(...)
+    - patterns:
+      - pattern: subprocess.call(..., shell=True)
+    - patterns:
+      - pattern: subprocess.run(..., shell=True)
+    - patterns:
+      - pattern: subprocess.Popen(..., shell=True)
+    - patterns:
+      - pattern: subprocess.check_output(..., shell=True)
+    - patterns:
+      - pattern: subprocess.check_call(..., shell=True)
+  message: Command injection vulnerability
+  severity: ERROR
+  metadata:
+    category: sink
+    cwe: CWE-78
+    owasp: A03:2021
+    confidence: high
+
+- id: code-injection-sink
+  languages: [python]
+  pattern-either:
+    - pattern: eval(...)
+    - pattern: exec(...)
+    - pattern: compile(...)
+    - pattern: __import__(...)
+  message: Code injection vulnerability via dynamic code execution
+  severity: ERROR
+  metadata:
+    category: sink
+    cwe: CWE-94
+    owasp: A03:2021
+    confidence: high
+
+- id: path-traversal-sink
+  languages: [python]
+  pattern-either:
+    - patterns:
+      - pattern: open($PATH, ...)
+      - pattern-not: open("...", ...)
+    - patterns:
+      - pattern: $FILE.write(...)
+      - metavariable-regex:
+          metavariable: $FILE
+          regex: ^(file|f|fp|fd)$
+    - pattern: os.remove(...)
+    - pattern: os.unlink(...)
+    - pattern: os.rmdir(...)
+    - pattern: shutil.rmtree(...)
+    - pattern: pathlib.Path(...).unlink()
+  message: Path traversal vulnerability
+  severity: ERROR
+  metadata:
+    category: sink
+    cwe: CWE-22
+    owasp: A01:2021
+    confidence: medium
+
+- id: ldap-injection-sink
+  languages: [python]
+  pattern-either:
+    - pattern: $CONN.search_s(...)
+    - pattern: $CONN.search(...)
+    - pattern: $CONN.search_ext(...)
+    - pattern: $CONN.modify_s(...)
+    - pattern: $CONN.add_s(...)
+    - pattern: $CONN.delete_s(...)
+  message: LDAP injection vulnerability
+  severity: ERROR
+  metadata:
+    category: sink
+    cwe: CWE-90
+    owasp: A03:2021
+    confidence: high
+
+- id: template-injection-sink
+  languages: [python]
+  pattern-either:
+    - pattern: render_template_string(...)
+    - pattern: jinja2.Template(...).render(...)
+    - pattern: Template(...).render(...)
+    - pattern: $ENGINE.from_string(...)
+  message: Template injection vulnerability (potential XSS)
+  severity: ERROR
+  metadata:
+    category: sink
+    cwe: CWE-1336
+    owasp: A03:2021
+    confidence: high
+
+- id: xml-injection-sink
+  languages: [python]
+  pattern-either:
+    - pattern: etree.fromstring(...)
+    - pattern: etree.XML(...)
+    - pattern: xml.etree.ElementTree.fromstring(...)
+    - pattern: xml.etree.ElementTree.XML(...)
+    - pattern: minidom.parseString(...)
+    - patterns:
+      - pattern: $PARSER.feed(...)
+      - metavariable-regex:
+          metavariable: $PARSER
+          regex: .*XMLParser.*
+  message: XML injection vulnerability (XXE)
+  severity: ERROR
+  metadata:
+    category: sink
+    cwe: CWE-611
+    owasp: A05:2021
+    confidence: medium
+
+- id: deserialization-sink
+  languages: [python]
+  pattern-either:
+    - pattern: pickle.loads(...)
+    - pattern: pickle.load(...)
+    - pattern: cPickle.loads(...)
+    - pattern: cPickle.load(...)
+    - pattern: yaml.load(...)
+    - pattern: marshal.loads(...)
+  message: Unsafe deserialization vulnerability
+  severity: ERROR
+  metadata:
+    category: sink
+    cwe: CWE-502
+    owasp: A08:2021
+    confidence: high

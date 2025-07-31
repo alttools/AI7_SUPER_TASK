@@ -1,0 +1,10 @@
+{
+  "type": "sink",
+  "name": "system",
+  "line_number": 654,
+  "match": "system(",
+  "confidence": 0.95,
+  "description": "System command execution",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/mptest/mptest.c",
+  "line_content": "if( g.iTrace>=2 ) logMessage(\"system('%q')\", zSys);"
+}

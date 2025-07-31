@@ -1,0 +1,159 @@
+rules:
+- id: eval-sink
+  languages: [python, javascript, ruby, php, typescript]
+  pattern-either:
+    - pattern: eval(...)
+    - pattern: exec(...)
+    - pattern: new Function(...)
+    - pattern: Function(...)
+  message: Code injection via eval() or similar dynamic execution
+  severity: ERROR
+  metadata:
+    category: sink
+    cwe: CWE-94
+    owasp: A03:2021
+    confidence: high
+
+- id: file-write-sink
+  languages: [python, javascript, java, go, rust, typescript]
+  pattern-either:
+    # Python patterns
+    - patterns:
+      - pattern: open($PATH, $MODE, ...)
+      - metavariable-regex:
+          metavariable: $MODE
+          regex: .*[wa].*
+      - pattern-not: open("...", ...)
+    - pattern: $FILE.write(...)
+    - pattern: $FILE.writelines(...)
+    # JavaScript patterns
+    - pattern: fs.writeFile(...)
+    - pattern: fs.writeFileSync(...)
+    - pattern: fs.appendFile(...)
+    - pattern: fs.appendFileSync(...)
+    - pattern: fs.createWriteStream(...)
+    # Java patterns
+    - pattern: new FileWriter(...)
+    - pattern: new FileOutputStream(...)
+    - pattern: Files.write(...)
+  message: Path traversal vulnerability via file write
+  severity: ERROR
+  metadata:
+    category: sink
+    cwe: CWE-22
+    owasp: A01:2021
+    confidence: medium
+
+- id: xss-sink-dom
+  languages: [javascript, typescript]
+  pattern-either:
+    - pattern: document.write(...)
+    - pattern: document.writeln(...)
+    - pattern: $ELEM.innerHTML = $DATA
+    - pattern: $ELEM.outerHTML = $DATA
+    - pattern: "$(...).html(...)"
+    - pattern: "$(...).append(...)"
+    - pattern: "$(...).prepend(...)"
+    - pattern: "$(...).after(...)"
+    - pattern: "$(...).before(...)"
+  message: DOM-based XSS vulnerability
+  severity: ERROR
+  metadata:
+    category: sink
+    cwe: CWE-79
+    owasp: A03:2021
+    confidence: high
+
+- id: sql-query-sink-generic
+  languages: [javascript, java, csharp, go, typescript]
+  pattern-either:
+    - pattern: $DB.query(...)
+    - pattern: $DB.exec(...)
+    - pattern: $DB.execute(...)
+    - pattern: $DB.run(...)
+    - patterns:
+      - pattern: $DB.prepare($QUERY)
+      - pattern-not: $DB.prepare("...")
+  message: Potential SQL injection vulnerability
+  severity: ERROR
+  metadata:
+    category: sink
+    cwe: CWE-89
+    owasp: A03:2021
+    confidence: medium
+
+- id: nosql-injection-sink
+  languages: [javascript, python, java, typescript]
+  pattern-either:
+    - pattern: "$COLLECTION.find({$where: ...})"
+    - pattern: '$COLLECTION.find({"$where": ...})'
+    - pattern: $DB.eval(...)
+    - pattern: $COLLECTION.mapReduce(...)
+  message: NoSQL injection vulnerability
+  severity: ERROR
+  metadata:
+    category: sink
+    cwe: CWE-943
+    owasp: A03:2021
+    confidence: high
+
+- id: regex-dos-sink
+  languages: [javascript, python, java, csharp, typescript]
+  pattern-either:
+    - pattern: new RegExp(...)
+    - pattern: re.compile(...)
+    - pattern: Pattern.compile(...)
+    - pattern: new Regex(...)
+  message: Regular expression denial of service (ReDoS) vulnerability
+  severity: WARNING
+  metadata:
+    category: sink
+    cwe: CWE-1333
+    owasp: A06:2021
+    confidence: medium
+
+- id: ssrf-sink
+  languages: [python, javascript, java, go, typescript]
+  pattern-either:
+    # Python
+    - pattern: requests.get(...)
+    - pattern: requests.post(...)
+    - pattern: urllib.request.urlopen(...)
+    - pattern: urllib2.urlopen(...)
+    # JavaScript
+    - pattern: fetch(...)
+    - pattern: axios.get(...)
+    - pattern: axios.post(...)
+    - pattern: "$.ajax({url: ...})"
+    # Java
+    - pattern: new URL(...).openConnection()
+    - pattern: HttpClient.newHttpClient().send(...)
+  message: Server-side request forgery (SSRF) vulnerability
+  severity: ERROR
+  metadata:
+    category: sink
+    cwe: CWE-918
+    owasp: A10:2021
+    confidence: medium
+
+- id: xxe-sink
+  languages: [python, java, csharp, javascript]
+  pattern-either:
+    # Python
+    - pattern: etree.parse(...)
+    - pattern: etree.fromstring(...)
+    - pattern: minidom.parse(...)
+    - pattern: minidom.parseString(...)
+    # Java
+    - pattern: DocumentBuilder.parse(...)
+    - pattern: SAXParser.parse(...)
+    - pattern: XMLReader.parse(...)
+    # Generic
+    - pattern: $PARSER.parse(...)
+  message: XML external entity (XXE) vulnerability
+  severity: ERROR
+  metadata:
+    category: sink
+    cwe: CWE-611
+    owasp: A05:2021
+    confidence: medium

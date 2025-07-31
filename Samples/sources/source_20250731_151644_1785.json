@@ -1,0 +1,10 @@
+{
+  "type": "source",
+  "name": "stdin_input",
+  "line_number": 165,
+  "match": "gets",
+  "confidence": 0.8,
+  "description": "Standard input functions",
+  "filename": "/Users/louismurphy/Library/Mobile Documents/com~apple~CloudDocs/Desktop/ODYSSEY/AI7_SUPER_TASK/../AI_SUPER_TASK/Repos/sqlite/src/where.c",
+  "line_content": "** into aiCur[0] and aiCur[1].  iaCur[0] gets the cursor of the data"
+}

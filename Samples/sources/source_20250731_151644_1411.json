@@ -1,0 +1,10 @@
+{
+  "type": "source",
+  "name": "stdin_input",
+  "line_number": 468,
+  "match": "gets",
+  "confidence": 0.8,
+  "description": "Standard input functions",
+  "filename": "/Users/louismurphy/Library/Mobile Documents/com~apple~CloudDocs/Desktop/ODYSSEY/AI7_SUPER_TASK/../AI_SUPER_TASK/Repos/sqlite/ext/jni/src/c/sqlite3-jni.c",
+  "line_content": "jobject jDb   /* A global ref of the output object which gets"
+}

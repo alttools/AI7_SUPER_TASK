@@ -1,0 +1,10 @@
+{
+  "type": "sink",
+  "name": "system",
+  "line_number": 3666,
+  "match": "system (",
+  "confidence": 0.95,
+  "description": "System command execution",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/src/os_unix.c",
+  "line_content": "** file system (on OSX), so failure indicates that FULLFSYNC"
+}

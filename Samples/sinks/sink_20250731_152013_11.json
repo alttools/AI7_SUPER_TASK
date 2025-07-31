@@ -1,0 +1,10 @@
+{
+  "type": "sink",
+  "name": "setTimeout_string",
+  "line_number": 298,
+  "match": "setTimeout(runTests2,",
+  "confidence": 0.8,
+  "description": "setTimeout with string argument",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/ext/wasm/demo-worker1.js",
+  "line_content": "if(waitForOpen) setTimeout(runTests2, 0);"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "sink",
+  "name": "system",
+  "line_number": 5233,
+  "match": "system(",
+  "confidence": 0.95,
+  "description": "System command execution",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/autosetup/jimsh0.c",
+  "line_content": "rc = system(Jim_String(cmdlineObj));"
+}

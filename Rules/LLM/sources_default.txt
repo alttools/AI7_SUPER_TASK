@@ -1,0 +1,34 @@
+Analyze the following {{uppercase language}} code and identify potential security vulnerability sources.
+    
+Focus on finding:
+1. User input sources (HTTP parameters, form data, cookies, headers)
+2. File system inputs (file reads, directory listings)
+3. Database queries that fetch external data
+4. API calls and external service integrations
+5. Environment variables and configuration reads
+6. Command line arguments
+7. WebSocket/real-time data inputs
+8. Deserialization points (JSON, XML, YAML parsing)
+
+For each source found, provide:
+{
+  "findings": [
+    {
+      "type": "source",
+      "category": "<category>",
+      "line": <number>,
+      "column": <number>,
+      "endLine": <number>,
+      "endColumn": <number>,
+      "severity": "low|medium|high|critical",
+      "confidence": <0.0-1.0>,
+      "message": "<description>"
+    }
+  ]
+}
+
+File: {{filePath}}
+Code:
+\`\`\`{{language}}
+{{content}}
+\`\`\`

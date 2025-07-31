@@ -1,0 +1,10 @@
+{
+  "type": "sanitizer",
+  "name": "snprintf",
+  "line_number": 451,
+  "match": "snprintf(",
+  "confidence": 0.85,
+  "description": "Bounded string formatting",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/ext/wasm/api/sqlite3-wasm.c",
+  "line_content": "zPos += snprintf(zPos, ((size_t)(zEnd - zPos)), format, __VA_ARGS__); \\"
+}

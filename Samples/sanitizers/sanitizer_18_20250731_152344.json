@@ -1,0 +1,10 @@
+{
+  "type": "sanitizer",
+  "name": "regex_escape",
+  "line_number": 286,
+  "match": ".replace('\"','_')",
+  "confidence": 0.7,
+  "description": "Regex escaping",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/ext/wasm/fiddle/fiddle-worker.js",
+  "line_content": "? opt.filename.split(/[/\\\\]/).pop().replace('\"','_')"
+}

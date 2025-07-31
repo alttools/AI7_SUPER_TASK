@@ -1,0 +1,10 @@
+{
+  "type": "sanitizer",
+  "name": "snprintf",
+  "line_number": 501,
+  "match": "snprintf(",
+  "confidence": 0.85,
+  "description": "Bounded string formatting",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/ext/lsm1/lsm_win32.c",
+  "line_content": "snprintf(zOut, nOut, \"%s\", zTempUtf8);"
+}

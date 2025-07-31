@@ -1,0 +1,10 @@
+{
+  "type": "sanitizer",
+  "name": "snprintf",
+  "line_number": 1130,
+  "match": "snprintf(",
+  "confidence": 0.85,
+  "description": "Bounded string formatting",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/ext/lsm1/lsm-test/lsmtest_main.c",
+  "line_content": "res = snprintf(aBuf, nBuf, \"%dM\", (int)(nByte/(1<<20)));"
+}

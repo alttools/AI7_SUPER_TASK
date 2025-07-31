@@ -1,0 +1,10 @@
+{
+  "type": "sink",
+  "name": "setTimeout_string",
+  "line_number": 680,
+  "match": "setTimeout(later,",
+  "confidence": 0.8,
+  "description": "setTimeout with string argument",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/ext/wasm/fiddle/fiddle.js",
+  "line_content": "timeout = setTimeout(later, wait);"
+}

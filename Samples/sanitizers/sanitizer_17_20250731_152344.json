@@ -1,0 +1,10 @@
+{
+  "type": "sanitizer",
+  "name": "regex_escape",
+  "line_number": 247,
+  "match": ".replace('\\n', '<br>', 'g')",
+  "confidence": 0.7,
+  "description": "Regex escaping",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/ext/wasm/fiddle/fiddle.js",
+  "line_content": "//text = text.replace('\\n', '<br>', 'g');"
+}

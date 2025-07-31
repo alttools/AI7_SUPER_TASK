@@ -1,0 +1,130 @@
+rules:
+- id: flask-request-source
+  languages: [python]
+  pattern-either:
+    - pattern: request.args.get(...)
+    - pattern: request.args[...]
+    - pattern: request.args
+    - pattern: request.form[...]
+    - pattern: request.form.get(...)
+    - pattern: request.form
+    - pattern: request.json
+    - pattern: request.get_json()
+    - pattern: request.data
+    - pattern: request.files[...]
+    - pattern: request.files
+    - pattern: request.headers[...]
+    - pattern: request.headers.get(...)
+    - pattern: request.headers
+    - pattern: request.cookies.get(...)
+    - pattern: request.cookies[...]
+    - pattern: request.cookies
+    - pattern: request.values[...]
+    - pattern: request.values.get(...)
+    - pattern: request.values
+  message: Flask request data as taint source
+  severity: INFO
+  metadata:
+    category: source
+    subcategory: web-input
+    framework: flask
+    confidence: high
+
+- id: django-request-source
+  languages: [python]
+  patterns:
+    - pattern-either:
+      - pattern: $REQ.GET[...]
+      - pattern: $REQ.GET.get(...)
+      - pattern: $REQ.POST[...]
+      - pattern: $REQ.POST.get(...)
+      - pattern: $REQ.FILES[...]
+      - pattern: $REQ.FILES.get(...)
+      - pattern: $REQ.META[...]
+      - pattern: $REQ.META.get(...)
+      - pattern: $REQ.body
+      - pattern: $REQ.COOKIES[...]
+      - pattern: $REQ.COOKIES.get(...)
+    - metavariable-regex:
+        metavariable: $REQ
+        regex: ^(request|req)$
+  message: Django request data as taint source
+  severity: INFO
+  metadata:
+    category: source
+    subcategory: web-input
+    framework: django
+    confidence: high
+
+- id: fastapi-request-source
+  languages: [python]
+  pattern-either:
+    - pattern: $REQ.query_params[...]
+    - pattern: $REQ.path_params[...]
+    - pattern: $REQ.headers[...]
+    - pattern: await $REQ.json()
+    - pattern: await $REQ.body()
+    - pattern: $REQ.cookies[...]
+  message: FastAPI request data as taint source
+  severity: INFO
+  metadata:
+    category: source
+    subcategory: web-input
+    framework: fastapi
+    confidence: high
+
+- id: database-query-source
+  languages: [python]
+  pattern-either:
+    - pattern: $CURSOR.fetchone()
+    - pattern: $CURSOR.fetchall()
+    - pattern: $CURSOR.fetchmany(...)
+    - pattern: $RESULT.scalar()
+    - pattern: $RESULT.scalars()
+    - pattern: $RESULT.first()
+  message: Database query result as potential taint source
+  severity: INFO
+  metadata:
+    category: source
+    subcategory: database-input
+    confidence: medium
+
+- id: external-api-source
+  languages: [python]
+  pattern-either:
+    - pattern: requests.get(...).text
+    - pattern: requests.get(...).content
+    - pattern: requests.get(...).json()
+    - pattern: requests.post(...).text
+    - pattern: requests.post(...).content
+    - pattern: requests.post(...).json()
+    - pattern: $RESP.text
+    - pattern: $RESP.content
+    - pattern: $RESP.json()
+    - patterns:
+      - pattern: $RESP.text
+      - metavariable-regex:
+          metavariable: $RESP
+          regex: ^(response|resp|r)$
+  message: External API response as taint source
+  severity: INFO
+  metadata:
+    category: source
+    subcategory: external-api
+    confidence: medium
+
+- id: config-file-source
+  languages: [python]
+  pattern-either:
+    - pattern: json.load(...)
+    - pattern: json.loads(...)
+    - pattern: yaml.load(...)
+    - pattern: yaml.safe_load(...)
+    - pattern: configparser.$PARSER.get(...)
+    - pattern: toml.load(...)
+  message: Configuration file data as taint source
+  severity: INFO
+  metadata:
+    category: source
+    subcategory: config-input
+    confidence: medium

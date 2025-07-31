@@ -1,0 +1,10 @@
+{
+  "type": "sink",
+  "name": "system",
+  "line_number": 40,
+  "match": "system(",
+  "confidence": 0.95,
+  "description": "System command execution",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/test/crashtest1.c",
+  "line_content": "system(\"cp test.db-journal test.db-journal-saved\");"
+}

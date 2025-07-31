@@ -1,0 +1,10 @@
+{
+  "type": "sink",
+  "name": "innerHTML",
+  "line_number": 319,
+  "match": ".innerHTML =",
+  "confidence": 0.85,
+  "description": "DOM innerHTML injection",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/ext/wasm/batch-runner.js",
+  "line_content": "sel.innerHTML = '';"
+}

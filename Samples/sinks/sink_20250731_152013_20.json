@@ -1,0 +1,10 @@
+{
+  "type": "sink",
+  "name": "system",
+  "line_number": 204,
+  "match": "system(",
+  "confidence": 0.95,
+  "description": "System command execution",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/ext/lsm1/lsm-test/lsmtest_tdb.c",
+  "line_content": "system(zCmd);"
+}

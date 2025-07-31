@@ -1,0 +1,10 @@
+{
+  "type": "sink",
+  "name": "setTimeout_string",
+  "line_number": 50,
+  "match": "setTimeout(resolve,",
+  "confidence": 0.8,
+  "description": "setTimeout with string argument",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/ext/wasm/tests/opfs/concurrency/test.js",
+  "line_content": "return new Promise((resolve)=>setTimeout(resolve,ms));"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "sanitizer",
+  "name": "regex_escape",
+  "line_number": 171,
+  "match": ".replace(/-- [^\\n]+\\n/g,''); // comment lines interfere with our split()",
+  "confidence": 0.7,
+  "description": "Regex escaping",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/ext/wasm/batch-runner.js",
+  "line_content": "sql = sql.replace(/-- [^\\n]+\\n/g,''); // comment lines interfere with our split()"
+}

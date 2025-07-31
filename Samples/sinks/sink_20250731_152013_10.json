@@ -1,0 +1,10 @@
+{
+  "type": "sink",
+  "name": "setTimeout_string",
+  "line_number": 286,
+  "match": "setTimeout(()=>runner(res,",
+  "confidence": 0.8,
+  "description": "setTimeout with string argument",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/ext/wasm/batch-runner.js",
+  "line_content": "setTimeout(()=>runner(res, rej), 0)/*give UI a chance to output the \"running\" banner*/;"
+}

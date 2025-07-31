@@ -1,0 +1,10 @@
+{
+  "type": "source",
+  "name": "url_params",
+  "line_number": 48,
+  "match": "new URLSearchParams",
+  "confidence": 0.8,
+  "description": "URL parameters",
+  "filename": "/Users/louismurphy/Library/Mobile Documents/com~apple~CloudDocs/Desktop/ODYSSEY/AI7_SUPER_TASK/../AI_SUPER_TASK/Repos/sqlite/ext/wasm/api/extern-post-js.c-pp.js",
+  "line_content": ": new URLSearchParams()"
+}

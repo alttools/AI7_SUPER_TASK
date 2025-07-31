@@ -1,0 +1,10 @@
+{
+  "type": "source",
+  "name": "argv",
+  "line_number": 19861,
+  "match": "argv[",
+  "confidence": 0.9,
+  "description": "Command line arguments",
+  "filename": "/Users/louismurphy/Library/Mobile Documents/com~apple~CloudDocs/Desktop/ODYSSEY/AI7_SUPER_TASK/../AI_SUPER_TASK/Repos/sqlite/autosetup/jimsh0.c",
+  "line_content": "if (Jim_GetEnum(interp, argv[idx], try_options, &option, \"handler\", JIM_ERRMSG) != JIM_OK) {"
+}

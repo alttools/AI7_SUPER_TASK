@@ -1,0 +1,10 @@
+{
+  "type": "sanitizer",
+  "name": "regex_escape",
+  "line_number": 323,
+  "match": ".replace(/[^vipPsjrdcC]/g,\"\").replace(/[pPscC]/g,'i')",
+  "confidence": 0.7,
+  "description": "Regex escaping",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/ext/wasm/jaccwabyt/jaccwabyt.js",
+  "line_content": "if(!f._) f._ = (x)=>x.replace(/[^vipPsjrdcC]/g,\"\").replace(/[pPscC]/g,'i');"
+}

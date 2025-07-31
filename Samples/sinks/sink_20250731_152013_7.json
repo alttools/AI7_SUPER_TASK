@@ -1,0 +1,10 @@
+{
+  "type": "sink",
+  "name": "strcpy",
+  "line_number": 1002,
+  "match": "strcpy(",
+  "confidence": 0.85,
+  "description": "Unsafe string copy",
+  "filename": "/Users/louismurphy/ODYSSEY/AI_SUPER_TASK/Repos/sqlite/ext/misc/amatch.c",
+  "line_content": "/* Circumvent compiler warnings about the use of strcpy() by supplying"
+}
